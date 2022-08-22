@@ -1,5 +1,5 @@
-import _, { create } from "lodash";
-import axios, {AxiosResponse} from 'axios';
+import _ from "lodash";
+import axios from 'axios';
 import { Pokemon } from "./model.pokemon.js";
 class Pesquisa{
   btnPesquisar : HTMLButtonElement;
@@ -16,9 +16,13 @@ class Pesquisa{
   configurarEventos() {
     this.btnPesquisar.addEventListener('click', (_evt)=>{
         _evt.preventDefault();
-        if(this.inputPesquisar.value){
-          this.obterPokemonJson(this.inputPesquisar.value.toLowerCase());
+
+        if(this.inputPesquisar.value == ''){
+          this.mensagemAviso('Não informado');
+          return;
         }
+
+        this.obterPokemonJson(this.inputPesquisar.value.toLowerCase());
     });
     
   }
@@ -36,15 +40,18 @@ class Pesquisa{
       this.apresentarPokemon(pokemonEncontrado);
     }
     catch(err){
-      this.divApresentarPokemon.innerHTML = '';
-      const msgErro = document.createElement('h3');
-      msgErro.innerText = `Não foi possível encontrar o pokemon '${pesquisa.toLocaleUpperCase()}'`;
-      msgErro.style.color = 'red';
-      this.divApresentarPokemon.append(msgErro);
-      this.divApresentarPokemon.style.display = 'block';
+      this.mensagemAviso(pesquisa);
     }
   }
-  apresentarPokemon(pokemon : Pokemon):void{
+  private mensagemAviso(pesquisa: string) {
+    this.divApresentarPokemon.innerHTML = '';
+    const msgErro = document.createElement('h3');
+    msgErro.innerText = `Não foi possível encontrar o pokemon '${pesquisa.toLocaleUpperCase()}'`;
+    msgErro.style.color = 'red';
+    this.divApresentarPokemon.append(msgErro);
+    this.divApresentarPokemon.style.display = 'block';
+  }
+  private apresentarPokemon(pokemon : Pokemon):void{
     this.divApresentarPokemon.innerHTML = '';
     
     const nome = document.createElement('h3');

@@ -33,25 +33,25 @@ main{
   max-width: 1200px;
   margin: 0 auto;
 }
-header{
+form{
   width: 50%;
   margin: 0 auto;
   display: block;
 }
-header h1{
+h1{
   font-size: 3.6rem;
   font-weight: bold;
   margin-bottom: 3rem;
 }
-header > .div-pesquisa{
+form > .div-pesquisa{
   width: 100%;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   padding: 0.3rem 0;
 }
-header > .div-pesquisa > input,
-header > .div-pesquisa > span{
+form > .div-pesquisa > input,
+form > .div-pesquisa > span{
   width: 100%;
   text-align: left;
 }
@@ -59,7 +59,7 @@ label{
   font-size: 2rem;
   font-weight: bold;
 }
-header > span{
+form > span{
   display: block;
   font-size: 1.4rem;
 }
@@ -77,4 +77,19 @@ button{
 button:hover{
   background-color: var(--bg-button-primary-hover);
   transform: 0.3;
+}
+
+#apresentar-pokemon{
+  padding: 5rem;
+  display: none;
+}
+#apresentar-pokemon h3{
+  font-size: 2.0rem;
+}
+#apresentar-pokemon span{
+  font-size: 1.8rem;
+}
+#apresentar-pokemon div img{
+  max-width: 200px;
+  min-width: 150px;
 }
